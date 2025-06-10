@@ -1,0 +1,16 @@
+começando pelo npm init -y
+para iniciar um package
+
+ depois
+ npm install npx typescript fastify
+ npx para criar atulizacoes automatica
+ typescript para criar type 
+ e fastify para criar requisiçoes
+
+ apois isso 
+ npx tsc --init
+ para criar o tsconfing
+
+ depos configura o caminho do npm rum dev
+ info no package e colocando o caminho com
+  # "dev": "npx tsx watch src/server.ts"
