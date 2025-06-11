@@ -1,7 +1,6 @@
 import { FastifyInstance, FastifyReply, FastifyRequest } from "fastify";
 import { shortenService } from "../Services/ShortService";
 
-
 export async function shortenController(app: FastifyInstance) {
     app.post("/shorten", async (request: FastifyRequest, reply: FastifyReply) => {
         try {
@@ -12,6 +11,7 @@ export async function shortenController(app: FastifyInstance) {
             return reply.status(404).send({ error: "Not Found" })
         }
     })
+
 
     app.get("/shorten", async (request: FastifyRequest, reply: FastifyReply) => {
         try {
@@ -26,7 +26,7 @@ export async function shortenController(app: FastifyInstance) {
     app.post("/qr-code", async (request: FastifyRequest, reply: FastifyReply) => {
         try {
             const body = request.body as { url: string }
-            const base64 = await shortenService.generateQrcode(body);
+            const base64 = await shortenService.generateQrCode(body);
             return base64;
         } catch (error: any) {
             return reply.status(404).send({ error: "Not Found" })

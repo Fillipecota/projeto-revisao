@@ -1,11 +1,10 @@
-.conteiner {
+.container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   max-width: 700px;
-
+  border-radius: 8px;
   margin: 100px auto;
-
   gap: 32px;
 }
 
@@ -14,13 +13,13 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #ffff;
-  border-radius: 8px;
-  padding: 30px;
   gap: 8px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
 }
 
-.conteiner h1 {
+.content h1 {
   font-size: 30px;
   font-weight: 600;
   font-family: Arial, Helvetica, sans-serif;
@@ -35,12 +34,12 @@
   border: 1px solid #d5d5d5;
 }
 
-
 .customizeLinke {
   display: flex;
   flex-direction: row;
   gap: 8px;
-  justify-content: center;
+  justify-content: start;
+  align-items: center;
   width: 100%;
   margin-bottom: 1rem;
 }
@@ -51,17 +50,16 @@
   text-transform: uppercase;
 }
 
-.customizeLinke input [type="checkbox"] {
+.customizeLinke input[type="checkbox"] {
   width: 30px;
   height: 30px;
 }
 
 .customizeLinke input[type="text"] {
-  padding: 4px;
+  padding: 8px;
   border: 1px solid #d5d5d5;
   outline: none;
   border-radius: 8px;
-
 }
 
 .buttonGroup {
@@ -74,16 +72,17 @@
   margin-bottom: 1rem;
 }
 
-.buttonGroup button {
+.buttonGroup button.buttonA {
   padding: 16px;
   width: 100%;
-  background-color: #666666;
+  background-color: #999999;
   border-radius: 8px;
   border: none;
   font-size: 18px;
   color: #ffffff;
+  cursor: pointer;
 }
 
-.buttonGroup button:hover{
-opacity: 0.6;
+.buttonGroup button.buttonA:hover {
+  opacity: 0.7;
 }

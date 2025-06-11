@@ -4,69 +4,72 @@ import { useState } from "react";
 import styles from "./page.module.css";
 import axios from "axios";
 
-
 export default function Home() {
-  const [originalLink, setOriginalLink] = useState<string>('')
-  const [isCustomizado, setIsCustomizado] = useState<boolean>(false);
-  const [linkCustomizado, setLinkCustomizado] = useState<string>('');
-  const [shortLink, setShortLink] = useState<string>('')
-  const [base64, setBase64] = useState <string>('')
+  const [originalLink, setOriginalLink] = useState<string>('');
+  const [isCustomize, setIsCustomize] = useState<boolean>(false);
+  const [linkCustomize, setLinkCustomize] = useState<string>('');
+  const [shortLink, setShortLink] = useState<string>('');
+  const [base64, setBase64] = useState<string>('');
 
   function handleValue(value: boolean) {
-    setIsCustomizado(value);
-    setLinkCustomizado("")
+    setIsCustomize(value);
+    setLinkCustomize('');
   }
 
-
   async function handleSubmit() {
-
-    const shortId = isCustomizado && !!linkCustomizado ? linkCustomizado : null
+    const shortId = isCustomize && !!linkCustomize ? linkCustomize : null;
 
     const body = {
       url: originalLink,
-      shortId: shortId,
+      shortId: shortId
     }
-    const response = await axios.post("http/localhost:3333/shorten", body);
+
+    const response = await axios.post("http://localhost:3333/shorten", body);
+
     setShortLink(`http://localhost:3000/${response.data.shortId}`)
   }
 
-  async function handleSubmitQrcode() {
-    const body ={
-      url:originalLink
+  async function handleSubmitQrCode() {
+    const body = {
+      url: originalLink
     }
-    const response = await axios.post("http/localhost:3333/Qr-code", body)
+
+    const response = await axios.post("http://localhost:3333/qr-code", body)
     setBase64(response.data.base64)
-    }
+  }
 
   return (
-    <div className={styles.conteiner}>
+    <div className={styles.container}>
       <div className={styles.content}>
-
-        <h1>Encurtador de link Gerador de QRcode</h1>
+        <h1>Encurtador de Link e Gerador de QRCode</h1>
         <input
-          type="text" placeholder=" colar link"
+          type="text"
+          placeholder="Cole o link..."
           value={originalLink}
-          onChange={(e) => setOriginalLink(e.target.value)} />
+          onChange={(e) => setOriginalLink(e.target.value)}
+        />
 
         <div className={styles.customizeLinke}>
           <span>Customizar URL:</span>
-          <input type="checkbox" checked={isCustomizado} onChange={(e) => handleValue(e.target.checked)} />
-          <input type="text"
-            placeholder="Link customizado"
-            value={linkCustomizado}
-            onChange={(e) => setLinkCustomizado(e.target.value)}
-            disabled={!isCustomizado} />
+          <input type="checkbox" checked={isCustomize} onChange={(e) => handleValue(e.target.checked)} />
+          <input
+            type="text"
+            placeholder="Link customizado..."
+            value={linkCustomize}
+            onChange={(e) => setLinkCustomize(e.target.value)}
+            disabled={!isCustomize}
+          />
         </div>
 
         <div className={styles.buttonGroup}>
           <button onClick={handleSubmit}>Ecutar Link</button>
-          <button onClick={handleSubmitQrcode}>Gerador QRcode</button>
+          <button onClick={handleSubmitQrCode}>Gerador QRcode</button>
         </div>
       </div>
 
       <div className={styles.content}>
-        <h1>Link Curto:{shortLink} </h1>
-        {!!base64 && <img src={base64}></img>}
+        <h1>LINK CURTO: {shortLink}</h1>
+        {!!base64 && <img src={base64} />}
       </div>
     </div>
   );
