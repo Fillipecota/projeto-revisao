@@ -12,5 +12,5 @@ app.register(cord,{
 app.register(shortenController)
  // ADICIONA O CONTROLLER
 app.listen({port:3333}).then(() => {
-    console.log("Backend rodando na posta 333!!!")
+    console.log("Backend rodando na posta 3333!!!")
 })
